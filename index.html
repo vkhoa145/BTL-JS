@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <!-- lineawesome -->
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+    
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <div class="banner">
+                <!-- Main Cart -->
+                <div class="main-cart"></div>
+                <!-- End of Main Cart -->
+                <!-- Nav Bar -->
+                <div class="nav">
+                    <button id="shoppingCart">
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <span class="total-qty">0</span>
+                </div>
+                <div class="cover"></div>
+                <div class="cover purchase-cover"></div>
+                <!-- End of Nav Bar -->
+                <!-- Cart  -->
+                <div class="cart">
+                    <div class="side-nav">
+                        <button>
+                            <i class="fas fa--times"></i>
+                        </button>
+                        <h2>Cart</h2>
+                        <div class="cart-items">
+                            <span class="empty-cart">Looks Like You Haven't Added Any Product In The Cart</span>
+                        </div>
+                        <div class="final">
+                            <strong>
+                                Total: $ 
+                                <span class="total">0</span>
+                            </strong>
+                            <div class="action">
+                                <button class="btn buy">
+                                    Purchase 
+                                    <i class="fas fa-credit-card"></i>
+                                </button>
+                                <button class="btn clear">
+                                    Clear Cart 
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End of Cart -->
+                <!-- Stock Limit -->
+                <div class="stock-limit"></div>
+                <!-- End of Stock Limit -->
+            </div>
+        </div>
+    </div>
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/5efe0bd96b.js" crossorigin="anonymous"></script>
+    <!-- jquery link-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- slick -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+ 
+</body>
+
+</html>
