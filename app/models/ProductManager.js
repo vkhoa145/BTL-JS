@@ -2,6 +2,15 @@
 function ProductManager() {
     this.products = [];
 };
+
+function cartItemManager () {
+    this.cartitem = [];
+};
+
+function FilterBar() {
+    this.filters = []
+};
+
 // Creating Get Product from Axios and apply to product manager
 ProductManager.prototype.getProducts = function () {
     // Call API lấy danh sách sản phẩm
@@ -17,11 +26,12 @@ ProductManager.prototype.getProducts = function () {
                         item.frontCamera,
                         item.img,
                         item.description,
-                        item.type
+                        item.type,
+                        item.id
 
                     );
-                    // Gán id cho object product
-                    product.id = item.id;
+                    
+                    
 
                     return product;
                 });
@@ -35,17 +45,9 @@ ProductManager.prototype.getProducts = function () {
             });
     });
 };
-ProductManager.prototype.getProductById = function (productID) {
-    return axios.get(
-        `https://6242f170b6734894c158f4a9.mockapi.io/Products/${productID}`
-    );
-};
+
 
 // Getting data from axios and apply to Filter bar
-function FilterBar() {
-    this.filters = []
-};
-
 FilterBar.prototype.getFilterData = function () {
     // Call API lấy danh sách sản phẩm
     return new Promise((resolve, reject) => {
@@ -60,11 +62,11 @@ FilterBar.prototype.getFilterData = function () {
                         item.frontCamera,
                         item.img,
                         item.description,
-                        item.type
+                        item.type,
+                        item.id
 
                     );
-                    // Gán id cho object product
-                    filter.id = item.id;
+                    
 
                     return filter;
                 });
@@ -79,4 +81,7 @@ FilterBar.prototype.getFilterData = function () {
     });
 };
 
-// Nên tạo hàm lấy data từ axios chung giữa filter và card
+
+
+
+

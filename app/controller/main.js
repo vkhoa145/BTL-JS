@@ -51,7 +51,7 @@ function display(products) {
             </div>
             <h4 class="card-backCamera">${product.backCamera}</h4>
             <h4 class="card-frontCamera">${product.frontCamera}</h4>
-            <button class ="btn btn-danger">Add</button>
+            <button class ="btn btn-danger" data-id ="${product.id}">Add</button>
           </div>
        </div>
        `
@@ -111,6 +111,4 @@ function removingDuplicate(filter) {
 
 
 
-// ADDIND PRODUCT INTO CART 
-// Event listener "click" of button 
 
