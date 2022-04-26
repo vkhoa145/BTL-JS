@@ -1,22 +1,6 @@
 
 
-// Tạo hàm pop up modal
-document.getElementById('shoppingCart').addEventListener('click', () => {
-  const sideNav = document.getElementById("sideNav");
 
-  sideNav.style.right = "0";
-  const cover = document.getElementById('cover');
-  cover.style.display = 'block';
-});
-
-// Tạo hàm tắt modal
-
-function closeModal() {
-  const sideNav = document.getElementById("sideNav");
-  sideNav.style.right = "-100%";
-  const cover = document.getElementById('cover');
-  cover.style.display = 'none';
-};
 
 // Initial function of Product 
 const productManager = new ProductManager();
@@ -115,26 +99,7 @@ const cartitemManager = new cartItemManager();
 
 
 
-function renderCart(cartitem) {
-  const demo = cartitem.reduce((result, cart) => {
-    return (result +
-      ` <table class="table table-dark">
-                             
-          <tbody>
-            <tr>
-            
-              <td>${cart.item.name}</td>
-              <td>${cart.quanity}</td>
-              
-            </tr>
-            
-          </tbody>
-        </table>`
-    )
-  }, "");
-  
-  document.getElementById("demo").innerHTML = demo;
-}
+
 
 // click event on card in order to listening the event on card button 
 document.getElementById('main-card').addEventListener('click', (event) => {
@@ -144,11 +109,42 @@ document.getElementById('main-card').addEventListener('click', (event) => {
   console.log(id)
 
   cartitemManager.getIdToCart(id).then(() => {
-    console.log(cartitemManager.cartitem);
-    renderCart(cartitemManager.cartitem);
-    
+    console.log(cartitemManager.cartitem.item.name);
+    renderCart(cartitemManager.cartitem.item);
+
   })
 })
 
+function renderCart (carts) {
+  const html = carts.reduce((result,cart) => {
+    return (
+      result + 
+      `
+        <tbody>
+          <tr>
+           <td>${cart.quanity}</td>
+          </tr>
+        </tbody>
+      `
+    )
+  },"");
+  document.getElementById("cart").innerHTML = html;
+}
 
+// Tạo hàm pop up modal
+document.getElementById('shoppingCart').addEventListener('click', () => {
+  const sideNav = document.getElementById("sideNav");
 
+  sideNav.style.right = "0";
+  const cover = document.getElementById('cover');
+  cover.style.display = 'block';
+});
+
+// Tạo hàm tắt modal
+
+function closeModal() {
+  const sideNav = document.getElementById("sideNav");
+  sideNav.style.right = "-100%";
+  const cover = document.getElementById('cover');
+  cover.style.display = 'none';
+};
