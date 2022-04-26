@@ -11,6 +11,7 @@ function Product(name, price, backCamera, frontCamera, img, description, type, i
   }
 // Create Cart Item object 
 function CartItem (quanity,name, price,id) {
-  this.prodcut = [this.prodcut.name = name, this.prodcut.price = price, this.prodcut.id = id];
+  this.item = {id,name,price};
   this.quanity = quanity;
 }
+

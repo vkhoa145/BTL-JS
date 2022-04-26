@@ -26,8 +26,8 @@ init();
 function init() {
   productManager.getProducts().then(() => {
     // Rendering product 
-    console.log(productManager.products);
-    
+    // console.log(productManager.products);
+
     display(productManager.products);
   });
 };
@@ -60,6 +60,7 @@ function display(products) {
 
   document.getElementById("main-card").innerHTML = html;
 }
+
 // Displayed Filter Bar
 const filterManager = new ProductManager();
 initFilter();
@@ -69,9 +70,9 @@ function initFilter() {
 
     displayFilter(filterManager.products);
     const acs = removingDuplicate(filterManager.products)
-    console.log(acs)
-    
-    
+    // console.log(acs)
+
+
 
 
   });
@@ -101,14 +102,53 @@ function displayFilter(filters) {
 };
 // Removing duplicated item in Filter Bar
 function removingDuplicate(filter) {
-   filter = filter.filter((value, index, self) =>
+  filter = filter.filter((value, index, self) =>
     index === self.findIndex((positionArr) => (
-      positionArr.type === value.type 
+      positionArr.type === value.type
     ))
   );
   return filter;
 };
 
+const cartitemManager = new cartItemManager();
+
+
+
+
+function renderCart(cartitem) {
+  const demo = cartitem.reduce((result, cart) => {
+    return (result +
+      ` <table class="table table-dark">
+                             
+          <tbody>
+            <tr>
+            
+              <td>${cart.item.name}</td>
+              <td>${cart.quanity}</td>
+              
+            </tr>
+            
+          </tbody>
+        </table>`
+    )
+  }, "");
+  
+  document.getElementById("demo").innerHTML = demo;
+}
+
+// click event on card in order to listening the event on card button 
+document.getElementById('main-card').addEventListener('click', (event) => {
+  const targetEl = event.target;
+  const id = targetEl.getAttribute("data-id")
+
+  console.log(id)
+
+  cartitemManager.getIdToCart(id).then(() => {
+    console.log(cartitemManager.cartitem);
+    renderCart(cartitemManager.cartitem);
+    
+  })
+})
 
 
 

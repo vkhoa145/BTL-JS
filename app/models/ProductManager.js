@@ -3,8 +3,9 @@ function ProductManager() {
     this.products = [];
 };
 
-function cartItemManager () {
-    this.cartitem = [];
+function cartItemManager() {
+    this.cartitem = []
+    
 };
 
 function FilterBar() {
@@ -30,8 +31,8 @@ ProductManager.prototype.getProducts = function () {
                         item.id
 
                     );
-                    
-                    
+
+
 
                     return product;
                 });
@@ -66,7 +67,7 @@ FilterBar.prototype.getFilterData = function () {
                         item.id
 
                     );
-                    
+
 
                     return filter;
                 });
@@ -80,7 +81,27 @@ FilterBar.prototype.getFilterData = function () {
             });
     });
 };
+cartItemManager.prototype.getIdToCart = function (productId) {
+    // Call API lấy danh sách sản phẩm
+    return new Promise((resolve, reject) => {
+        axios
+            .get(`https://6242f170b6734894c158f4a9.mockapi.io/Products/${productId}`)
+            .then((cart) => {
+               const item = cart.data;
+               this.cartitem = new CartItem(1,item.name,item.price,item.id);
+               
+            
+                
 
+                resolve();
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+                reject(error);
+               
+            });
+    });
+};
 
 
 
