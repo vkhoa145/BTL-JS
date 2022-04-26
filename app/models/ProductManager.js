@@ -81,6 +81,14 @@ FilterBar.prototype.getFilterData = function () {
             });
     });
 };
+ProductManager.prototype.getProductById = function (productId) {
+    return axios.get (
+        `https://6242f170b6734894c158f4a9.mockapi.io/Products/${productId}`
+    );
+};
+
+
+
 cartItemManager.prototype.getIdToCart = function (productId) {
     // Call API lấy danh sách sản phẩm
     return new Promise((resolve, reject) => {
@@ -92,8 +100,8 @@ cartItemManager.prototype.getIdToCart = function (productId) {
                
             
                 
-
-                resolve();
+                
+                resolve(this.cartitem);
             })
             .catch((error) => {
                 console.log(error.response.data);

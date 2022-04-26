@@ -13,6 +13,7 @@ function init() {
     // console.log(productManager.products);
 
     display(productManager.products);
+
   });
 };
 
@@ -53,8 +54,7 @@ function initFilter() {
     // Rendering product 
 
     displayFilter(filterManager.products);
-    const acs = removingDuplicate(filterManager.products)
-    // console.log(acs)
+
 
 
 
@@ -94,57 +94,72 @@ function removingDuplicate(filter) {
   return filter;
 };
 
+// Click event to filtering the product which had the same type with filter bar
+
+
+
+
+
 const cartitemManager = new cartItemManager();
 
 
 
 
 
-
-// click event on card in order to listening the event on card button 
+// Transfer data o cart item 
+let cartlist = [];
 document.getElementById('main-card').addEventListener('click', (event) => {
   const targetEl = event.target;
   const id = targetEl.getAttribute("data-id")
 
-  console.log(id)
+
 
   cartitemManager.getIdToCart(id).then(() => {
-    console.log(cartitemManager.cartitem.item.name);
-    renderCart(cartitemManager.cartitem.item);
+
+
+
+    transferDataIntoCartItem(cartitemManager.cartitem)
+    renderCart(cartlist);
 
   })
 })
+function transferDataIntoCartItem(cartitem) {
+  for (let i = 0; i < cartlist.length; i++) {
+    if (cartlist[i].item.id === cartitem.item.id) {
+      cartlist[i].quanity = Number(cartlist[i].quanity) + 1
+      return;
+    }
+  }
 
-function renderCart (carts) {
-  const html = carts.reduce((result,cart) => {
+
+
+  cartlist.push(cartitem);
+  console.log(cartlist)
+};
+
+
+
+
+function renderCart(carts) {
+  const html = carts.reduce((result, cart) => {
     return (
-      result + 
+      result +
       `
-        <tbody>
-          <tr>
-           <td>${cart.quanity}</td>
-          </tr>
-        </tbody>
+        <table class ="table table-dark">
+          <tbody>
+            <tr>
+              <td>${cart.item.name}</td>
+              <td>${cart.item.price}</td>
+              <td>${cart.quanity}</td>
+              
+              
+
+            </tr>
+          </tbody>
+        </table>
       `
     )
-  },"");
+  }, "");
   document.getElementById("cart").innerHTML = html;
 }
 
-// Tạo hàm pop up modal
-document.getElementById('shoppingCart').addEventListener('click', () => {
-  const sideNav = document.getElementById("sideNav");
-
-  sideNav.style.right = "0";
-  const cover = document.getElementById('cover');
-  cover.style.display = 'block';
-});
-
-// Tạo hàm tắt modal
-
-function closeModal() {
-  const sideNav = document.getElementById("sideNav");
-  sideNav.style.right = "-100%";
-  const cover = document.getElementById('cover');
-  cover.style.display = 'none';
-};
