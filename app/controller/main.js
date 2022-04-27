@@ -52,7 +52,7 @@ initFilter();
 function initFilter() {
   filterManager.getProducts().then(() => {
     // Rendering product 
-
+    console.log(filterManager.products)
     displayFilter(filterManager.products);
 
 
@@ -120,21 +120,28 @@ document.getElementById('main-card').addEventListener('click', (event) => {
 
     transferDataIntoCartItem(cartitemManager.cartitem)
     renderCart(cartlist);
+    
+    
 
   })
 })
 function transferDataIntoCartItem(cartitem) {
+  
   for (let i = 0; i < cartlist.length; i++) {
+    let totalPurchase = 0;
     if (cartlist[i].item.id === cartitem.item.id) {
       cartlist[i].quanity = Number(cartlist[i].quanity) + 1
+      cartlist[i].total = Number(cartlist[i].item.price) * Number(cartlist[i].quanity)
+      
       return;
     }
+    
   }
-
+  
 
 
   cartlist.push(cartitem);
-  console.log(cartlist)
+  
 };
 
 
@@ -151,6 +158,8 @@ function renderCart(carts) {
               <td>${cart.item.name}</td>
               <td>${cart.item.price}</td>
               <td>${cart.quanity}</td>
+              <td>${cart.total}</td>
+
               
               
 
@@ -163,3 +172,15 @@ function renderCart(carts) {
   document.getElementById("cart").innerHTML = html;
 }
 
+// function renderPurchase (purchase) {
+//   const html = 
+//   `
+//   <strong>
+//     Total: $
+//     <span class="total" id="totalPurchase">${purchase}</span>
+//   </strong>
+  
+//   `
+
+//   document.getElementById("totalPurchase").innerHTML = html;
+// }

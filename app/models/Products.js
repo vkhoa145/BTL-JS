@@ -10,8 +10,9 @@ function Product(name, price, backCamera, frontCamera, img, description, type, i
     this.id = id
   }
 // Create Cart Item object 
-function CartItem (quanity,name, price,id) {
+function CartItem (quanity,name, price,id,total) {
   this.item = {id,name,price};
   this.quanity = quanity;
+  this.total = total;
 }
 

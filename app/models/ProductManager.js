@@ -96,7 +96,7 @@ cartItemManager.prototype.getIdToCart = function (productId) {
             .get(`https://6242f170b6734894c158f4a9.mockapi.io/Products/${productId}`)
             .then((cart) => {
                const item = cart.data;
-               this.cartitem = new CartItem(1,item.name,item.price,item.id);
+               this.cartitem = new CartItem(1,item.name,item.price,item.id,item.price);
                
             
                 
