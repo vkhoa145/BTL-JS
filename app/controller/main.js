@@ -115,20 +115,16 @@ document.getElementById('main-card').addEventListener('click', (event) => {
 
 
   cartitemManager.getIdToCart(id).then(() => {
-
-
-
     transferDataIntoCartItem(cartitemManager.cartitem)
     renderCart(cartlist);
-    
-    
-
+  }).then((result) => {
+    renderPurchase(result)
   })
 })
 function transferDataIntoCartItem(cartitem) {
   
   for (let i = 0; i < cartlist.length; i++) {
-    let totalPurchase = 0;
+    
     if (cartlist[i].item.id === cartitem.item.id) {
       cartlist[i].quanity = Number(cartlist[i].quanity) + 1
       cartlist[i].total = Number(cartlist[i].item.price) * Number(cartlist[i].quanity)
@@ -172,15 +168,11 @@ function renderCart(carts) {
   document.getElementById("cart").innerHTML = html;
 }
 
-// function renderPurchase (purchase) {
-//   const html = 
-//   `
-//   <strong>
-//     Total: $
-//     <span class="total" id="totalPurchase">${purchase}</span>
-//   </strong>
-  
-//   `
-
-//   document.getElementById("totalPurchase").innerHTML = html;
-// }
+// render total purchase on cart 
+function renderPurchase () {
+  let purchase = 0;
+  for (i=0;i< cartlist.length;i++) {
+    purchase += Number(cartlist[i].total)
+  }
+  document.getElementById("totalPurchase").innerHTML = purchase
+}
