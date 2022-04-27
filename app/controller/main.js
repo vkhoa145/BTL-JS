@@ -153,7 +153,13 @@ function renderCart(carts) {
             <tr>
               <td>${cart.item.name}</td>
               <td>${cart.item.price}</td>
-              <td>${cart.quanity}</td>
+              <td>
+                <div class="change-quanity">
+                  <button class="increase-quanity" data-id="${cart.item.id}" data-type="increase" >-</button>
+                  <span id="change-quanity">${cart.quanity}</span>
+                  <button class="decrease-quanity" data-id="${cart.item.id}" data-type="decrease">+</button>
+                </div>
+              </td>
               <td>${cart.total}</td>
 
               
@@ -176,3 +182,7 @@ function renderPurchase () {
   }
   document.getElementById("totalPurchase").innerHTML = purchase
 }
+
+
+// increase function on quanity 
+
