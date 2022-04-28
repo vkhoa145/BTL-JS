@@ -62,7 +62,7 @@ function displayFilter(filters) {
       result +
       `
        <div>
-          <ul class ="filter-product">
+          <ul class ="filter-product" id="filter-bar">
             <li>
               <a href ="#">
                 <span id="${filter.type}">${filter.type}</span>
@@ -83,9 +83,36 @@ function removingDuplicate(filter) {
       positionArr.type === value.type
     ))
   );
+
   return filter;
 };
-// Click event to filtering the product which had the same type with filter bar
+// Event: click on filter bar in order to filtering product
+let filterbar = [];
+document.getElementById("filter-bar").addEventListener("click", (event) => {
+  const targetEl = event.target
+
+  const type = targetEl.getAttribute("id")
+  
+  
+  const data = productManager.products
+  const filterarray = [];
+  for (i =0;i<data.length;i++) {
+    if (type === data[i].type) {
+      
+      
+      filterarray.push(data[i])
+      
+    };
+    
+  };
+  console.log(filterarray);
+  display(filterarray)
+  
+  
+})
+
+
+
 
 // Shopping Cart
 const cartitemManager = new cartItemManager();
@@ -95,7 +122,7 @@ document.getElementById('main-card').addEventListener('click', (event) => {
   const targetEl = event.target;
   const id = targetEl.getAttribute("data-id")
   const type = targetEl.getAttribute("data-type")
-  
+
   if (type === "addtocart") {
     cartitemManager.getIdToCart(id).then(() => {
       transferDataIntoCartItem(cartitemManager.cartitem)
@@ -104,15 +131,15 @@ document.getElementById('main-card').addEventListener('click', (event) => {
       renderPurchase(result)
     })
   }
- 
-  
+
+
 })
 // Function: uppdating quanity of items
 function transferDataIntoCartItem(cartitem) {
   for (let i = 0; i < cartlist.length; i++) {
     if (cartlist[i].item.id === cartitem.item.id) {
       cartlist[i].quanity = Number(cartlist[i].quanity) + 1
-      cartlist[i].total = Number(cartlist[i].item.price) * Number(cartlist[i].quanity)  
+      cartlist[i].total = Number(cartlist[i].item.price) * Number(cartlist[i].quanity)
       return;
     }
   }
@@ -147,9 +174,9 @@ function renderCart(carts) {
 }
 
 // Function: render total purchase in cart 
-function renderPurchase () {
+function renderPurchase() {
   let purchase = 0;
-  for (i=0;i< cartlist.length;i++) {
+  for (i = 0; i < cartlist.length; i++) {
     purchase += Number(cartlist[i].total)
   }
   document.getElementById("totalPurchase").innerHTML = purchase
@@ -159,7 +186,7 @@ document.getElementById('cartdata').addEventListener('click', (event) => {
   const targetEl = event.target;
   const id = targetEl.getAttribute("data-id")
   const type = targetEl.getAttribute("data-type")
-  
+
   if (type === "increase") {
     cartitemManager.getIdToCart(id).then(() => {
       increase(cartitemManager.cartitem)
@@ -171,29 +198,29 @@ document.getElementById('cartdata').addEventListener('click', (event) => {
     })
   };
 
-  
- 
-  
+
+
+
 })
 
 // function: Increase quanity of item
-function increase (cart) {
-  for (i = 0;i<cartlist.length;i++) {
-    if(cartlist[i].item.id === cart.item.id) {
-        cartlist[i].quanity = Number(cartlist[i].quanity) +1;
-        cartlist[i].total = Number(cartlist[i].item.price) * Number(cartlist[i].quanity);
-        
-        
+function increase(cart) {
+  for (i = 0; i < cartlist.length; i++) {
+    if (cartlist[i].item.id === cart.item.id) {
+      cartlist[i].quanity = Number(cartlist[i].quanity) + 1;
+      cartlist[i].total = Number(cartlist[i].item.price) * Number(cartlist[i].quanity);
+
+
     }
   }
 };
 
 
 // function: Decrease quanity of item
-function decrease (cart) {
-  for(i = 0;i<cartlist.length;i++) {
+function decrease(cart) {
+  for (i = 0; i < cartlist.length; i++) {
     if (cartlist[i].item.id === cart.item.id) {
-        cartlist[i].quanity = Number(cartlist[i].quanity) - 1
+      cartlist[i].quanity = Number(cartlist[i].quanity) - 1
     }
   }
 };
