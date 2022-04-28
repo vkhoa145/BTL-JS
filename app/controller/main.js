@@ -25,7 +25,7 @@ function display(products) {
             <i class ="fab fa-apple"></i>
             <span>In Stock</span>
           </div>
-          <img> class ="card-img" src =${product.img} >
+          <img class ="card-img" src ="${product.img}" >
           <div class ="card-body">
             <h4 class="card-title">${product.name}</h4>
             <div class ="card-price">

@@ -1,7 +1,4 @@
-*{
-    padding: 0;
-    margin:0;
-}
+
 html>body{
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
@@ -50,20 +47,20 @@ html>body{
     color: lightgreen;
 }
 
-img.card-img{
-    padding: 56px 0;
-}
+
 .card-body{
     color: #fff;
-    padding: 10px 0;
+    padding: 5px 0;
     border-radius: 20px;
     background-color: #333;
     position: relative;
+
 }
 
 .card-title{
     font-size: 16px;
     font-weight: 600;
+    padding: 0;
 }
 
 .card-text{
@@ -78,9 +75,10 @@ img.card-img{
 }
 
 .card-price{
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .main-card .card:hover{
@@ -96,4 +94,15 @@ img.card-img{
 
 .icon i{
     font-size: 20px;
+}
+.card-img {
+    width: 100%;
+    align-items: center;
+    padding: 0;
+}
+img {
+    padding: 0;
+}
+.card-body h4 {
+    font-size: 0.85rem;
 }

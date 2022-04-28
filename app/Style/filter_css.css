@@ -1,0 +1,8 @@
+/* Filter Bar */
+.filter-bar {
+    width: 100%;
+    height: 43px;
+    background-color: aqua;
+    display: flex;
+}
+/* End of Filter Bar */
